@@ -5,7 +5,60 @@
     android:scrollbarSize="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.fragments.CoroutinesFragment">
+    tools:context=".presentation.fragments.NetworkFragment">
+
+
+    <TextView
+        android:id="@+id/tvNetwork"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Network"
+        android:textColor="#424242"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etNetworkLink"
+        android:layout_width="256dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Link"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.626"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNetwork" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDoQuery"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="58dp"
+        android:text="DO THE QUERY"
+        app:backgroundTint="#98025C"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNetworkLink" />
+
+    <TextView
+        android:id="@+id/tvNetworkData"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDoQuery" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
