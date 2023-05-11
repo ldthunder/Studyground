@@ -42,8 +42,8 @@
         android:layout_marginStart="128dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="128dp"
+        android:src="@drawable/ic_launcher_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFirebase"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintTop_toBottomOf="@+id/tvFirebase" />
 </androidx.constraintlayout.widget.ConstraintLayout>

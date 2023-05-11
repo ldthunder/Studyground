@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
-class MainViewModel: ViewModel() {
+class MainViewModel : ViewModel() {
     // LiveData
     private val _word = MutableLiveData<String>()
     val word: LiveData<String>
@@ -16,6 +16,10 @@ class MainViewModel: ViewModel() {
         viewModelScope.launch {
             // Coroutine that will be canceled when the ViewModel is cleared.
         }
+    }
+
+    fun navigateById(){
+
     }
 
     override fun onCleared() {

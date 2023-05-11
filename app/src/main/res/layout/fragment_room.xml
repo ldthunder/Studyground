@@ -5,7 +5,7 @@
     android:scrollbarSize="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.fragments.CoroutinesFragment">
+    tools:context=".presentation.fragments.RoomFragment">
 
     <TextView
         android:id="@+id/tvRoom"
@@ -23,7 +23,7 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etInsert"
         android:layout_width="164dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
         android:hint="Insert"
@@ -35,7 +35,7 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etReplace"
         android:layout_width="164dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
         android:hint="Replace"
@@ -47,7 +47,7 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etDelete"
         android:layout_width="164dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="24dp"
         android:hint="Delete"
