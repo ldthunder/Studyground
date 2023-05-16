@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
+    id "kotlin-kapt"
 }
 
 android {
@@ -30,48 +30,49 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = '17'
     }
 
     java {
         toolchain {
-            languageVersion.set(JavaLanguageVersion.of(11))
+            languageVersion.set(JavaLanguageVersion.of(17))
         }
     }
 
+}
 
+kapt {
+    correctErrorTypes true
 }
 
 dependencies {
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.core:core-ktx:1.11.0-alpha03'
+    /* Не меняй версию котлина, версии выше вызывают ошибку */
+
+    debugImplementation("com.infinum.dbinspector:dbinspector:5.4.8")
 
     // Room
     def room_version = "2.5.1"
     implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$room_version"
     testImplementation "androidx.room:room-testing:$room_version" // For testing migrations
 
     // Dagger2
     def dagger_version = "2.28.3"
-    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger:2.44"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     implementation "com.google.dagger:dagger-android:$dagger_version"
     implementation "com.google.dagger:dagger-android-support:$dagger_version" // if you use the support libraries
-    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
 
 
-    // Ktor
-    def ktor_version = '2.3.0'
-    implementation "io.ktor:ktor-client-android:$ktor_version"
-    implementation "io.ktor:ktor-client-core:$ktor_version"
-    implementation "io.ktor:ktor-client-json:$ktor_version"
-    implementation "io.ktor:ktor-client-logging:$ktor_version"
 
     // Retrofit & GSON & Glide
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
