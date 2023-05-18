@@ -1,14 +1,7 @@
 package com.example.sg.di
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-//class App : Application() {
-//
-//    lateinit var daggerComponent: DaggerComponent
-//
-//    override fun onCreate() {
-//        super.onCreate()
-//
-//        daggerComponent = DaggerDaggerComponent.builder().appModule(AppModule(this)).build()
-//    }
-//}
+@HiltAndroidApp
+class App : Application()

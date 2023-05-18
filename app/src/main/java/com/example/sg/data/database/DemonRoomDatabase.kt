@@ -13,7 +13,7 @@ import javax.inject.Singleton
 /*** В настоящем приложении exportSchema надо поменять, и, поменяв, ты потом повышаешь версию дб и определяешь политику миграции. Destroy and re-create strategy
  может быть достаточно, но в реальных приложениях лучше добавить свою стратегию миграции
 */
-@Database(entities = [Demon::class], version = 1)
+@Database(entities = [Demon::class], version = 1, exportSchema = false)
 abstract class DemonRoomDatabase : RoomDatabase() {
     abstract val dao: DemonDao
 

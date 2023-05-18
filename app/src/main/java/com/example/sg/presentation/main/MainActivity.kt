@@ -12,11 +12,13 @@ import com.example.sg.R
 import com.example.sg.data.database.Demon
 import com.example.sg.data.database.DemonRoomDatabase
 import com.example.sg.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.koin.androidx.scope.activityScope
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
