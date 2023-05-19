@@ -4,19 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
-import javax.inject.Inject
-import javax.inject.Singleton
 
-/*** В настоящем приложении exportSchema надо поменять, и, поменяв, ты потом повышаешь версию дб и определяешь политику миграции. Destroy and re-create strategy
- может быть достаточно, но в реальных приложениях лучше добавить свою стратегию миграции
+/*** В настоящем приложении параметр exportSchema надо поменять,
+ *  и, поменяв, повысить версию дб,
+ *  а далее - определить политику миграции.
+ *  Destroy and re-create strategy может быть достаточно,
+ *  но в реальных приложениях лучше добавить свою стратегию миграции
 */
 @Database(entities = [Demon::class], version = 1, exportSchema = false)
 abstract class DemonRoomDatabase : RoomDatabase() {
     abstract val dao: DemonDao
-
 
     companion object {
         @Volatile
@@ -34,6 +31,5 @@ abstract class DemonRoomDatabase : RoomDatabase() {
                 instance
             }
         }
-
     }
 }
