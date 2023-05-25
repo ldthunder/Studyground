@@ -11,7 +11,10 @@ import androidx.room.RoomDatabase
  *  Destroy and re-create strategy может быть достаточно,
  *  но в реальных приложениях лучше добавить свою стратегию миграции
 */
-@Database(entities = [Demon::class], version = 1, exportSchema = false)
+@Database(
+    entities = [Demon::class],
+    version = 1, exportSchema = false
+)
 abstract class DemonRoomDatabase : RoomDatabase() {
     abstract val dao: DemonDao
 
