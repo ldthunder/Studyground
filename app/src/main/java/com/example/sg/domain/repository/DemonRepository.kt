@@ -1,11 +1,11 @@
 package com.example.sg.domain.repository
 
-import androidx.lifecycle.LiveData
 import com.example.sg.data.database.Demon
 import com.example.sg.data.network.DemonNetwork
+import kotlinx.coroutines.flow.Flow
 
 interface DemonRepository {
-    val allDemons: LiveData<List<Demon>>
+    val allDemons: Flow<List<Demon>>
 
     suspend fun upsert(demon: Demon)
 

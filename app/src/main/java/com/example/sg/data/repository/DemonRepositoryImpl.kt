@@ -1,12 +1,11 @@
 package com.example.sg.data.repository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
 import com.example.sg.data.database.Demon
 import com.example.sg.data.database.DemonDao
 import com.example.sg.data.network.DemonApi
 import com.example.sg.data.network.DemonNetwork
 import com.example.sg.domain.repository.DemonRepository
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -14,8 +13,8 @@ import javax.inject.Singleton
 class DemonRepositoryImpl @Inject constructor(private val demonDao: DemonDao,
                                               private val api: DemonApi) : DemonRepository {
 
-    override val allDemons: LiveData<List<Demon>>
-        get() = demonDao.getDemons().asLiveData()
+    override val allDemons: Flow<List<Demon>>
+        get() = demonDao.getDemons()
 
     override suspend fun upsert(demon: Demon) {
         demonDao.upsertDemon(demon)

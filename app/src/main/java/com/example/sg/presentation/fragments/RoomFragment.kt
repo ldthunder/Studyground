@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.sg.data.database.Demon
 import com.example.sg.databinding.FragmentRoomBinding
 import com.example.sg.presentation.viewmodels.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint

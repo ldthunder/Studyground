@@ -1,4 +1,6 @@
 package com.example.sg.data.mapper
 
-class SomeMapper {
-}
+import com.example.sg.data.network.DemonNetwork
+
+
+fun List<DemonNetwork>.toDemon() = this.map { it }
