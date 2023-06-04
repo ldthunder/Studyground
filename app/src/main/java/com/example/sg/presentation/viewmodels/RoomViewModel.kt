@@ -16,20 +16,23 @@ class RoomViewModel @Inject constructor(private val repository: DemonRepository)
     // All Data
     val demonsList: LiveData<List<Demon>> = repository.allDemons.asLiveData()
 
+
     fun wipeData(){
         viewModelScope.launch {
             repository.wipeData()
         }
     }
-    init {
+
+    fun upsert(demon: Demon){
         viewModelScope.launch {
-            repository.updateByNetwork()
+            repository.upsert(demon)
         }
     }
 
+
     fun fetchDemons(){
         viewModelScope.launch {
-
+            repository.updateByNetwork()
         }
     }
 

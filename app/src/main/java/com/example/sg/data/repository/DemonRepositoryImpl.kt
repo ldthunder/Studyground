@@ -20,17 +20,19 @@ class DemonRepositoryImpl @Inject constructor(
     private val api: DemonNetworkDataSource
     ) : DemonRepository {
 
+    /* Room Fragment */
     override val allDemons: Flow<List<Demon>>
         get() = demonDao.getDemons().map { it.map(DemonLocal::asExternalModel) }
 
-    override suspend fun upsert(demonLocal: DemonLocal) {
-        demonDao.upsertDemon(demonLocal)
+    override suspend fun upsert(demon: Demon) {
+        demonDao.upsertDemon(demon.asLocalModel())
     }
 
     override suspend fun wipeData() {
          demonDao.wipeData()
     }
 
+    /* Network Fragment */
     override suspend fun updateByNetwork() {
         val result = api.getDemons().forEach {
             demonDao.upsertDemon(it.asLocalModel())

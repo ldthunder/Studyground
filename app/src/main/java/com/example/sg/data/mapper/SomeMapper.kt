@@ -7,13 +7,6 @@ import com.example.sg.domain.model.Demon
 import com.example.sg.domain.model.Todo
 
 /* Object to Object */
-fun NetworkDemon.asExternalModel() = Demon(
-    id = this.id,
-    name = this.title,
-    thumbnail = this.thumbnailUrl,
-    url = this.url
-)
-
 fun NetworkTodo.asExternalModel() = Todo(
     completed = this.completed,
     id = this.id,
@@ -29,6 +22,13 @@ fun NetworkDemon.asLocalModel() = DemonLocal(
 )
 
 fun DemonLocal.asExternalModel() = Demon(
+    id = this.id,
+    name = this.name,
+    thumbnail = this.thumbnail,
+    url = this.url
+)
+
+fun Demon.asLocalModel() = DemonLocal(
     id = this.id,
     name = this.name,
     thumbnail = this.thumbnail,

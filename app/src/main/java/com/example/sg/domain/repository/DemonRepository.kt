@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 interface DemonRepository {
     val allDemons: Flow<List<Demon>>
 
-    suspend fun upsert(demonLocal: DemonLocal)
+    suspend fun upsert(demon: Demon)
 
     suspend fun wipeData()
 

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.sg.databinding.FragmentRoomBinding
+import com.example.sg.domain.model.Demon
 import com.example.sg.presentation.viewmodels.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,10 +32,19 @@ class RoomFragment : Fragment() {
     }
 
     private fun setupOnClickListeners() {
-        binding.btnInsert.setOnClickListener {  }
+        binding.btnInsert.setOnClickListener{
+            val id = binding.etId.text.toString().toInt()
+            val name = binding.etName.text.toString()
+            val power = binding.etPower.text.toString()
+            viewModel.upsert(Demon(id, name, power, ""))
+        }
 
         binding.btnWipe.setOnClickListener {
             viewModel.wipeData()
+        }
+
+        binding.btnFetchDemons.setOnClickListener {
+            viewModel.fetchDemons()
         }
     }
 
