@@ -1,10 +1,10 @@
 package com.example.sg.data.mapper
 
 import com.example.sg.data.database.DemonLocal
-import com.example.sg.data.network.model.NetworkDemon
-import com.example.sg.data.network.model.NetworkTodo
-import com.example.sg.domain.model.Demon
-import com.example.sg.domain.model.Todo
+import com.example.sg.data.network.models.NetworkDemon
+import com.example.sg.data.network.models.NetworkTodo
+import com.example.sg.domain.models.Demon
+import com.example.sg.domain.models.Todo
 
 /* Object to Object */
 fun NetworkTodo.asExternalModel() = Todo(

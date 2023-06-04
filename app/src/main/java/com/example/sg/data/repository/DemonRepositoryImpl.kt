@@ -4,15 +4,17 @@ import com.example.sg.data.database.DemonLocal
 import com.example.sg.data.database.DemonDao
 import com.example.sg.data.mapper.asExternalModel
 import com.example.sg.data.mapper.asLocalModel
-import com.example.sg.data.network.model.NetworkTodo
+import com.example.sg.data.network.models.NetworkDemon
+import com.example.sg.data.network.models.NetworkTodo
 import com.example.sg.data.network.service.DemonNetworkDataSource
-import com.example.sg.domain.model.Demon
-import com.example.sg.domain.model.Todo
+import com.example.sg.domain.models.Demon
+import com.example.sg.domain.models.Todo
 import com.example.sg.domain.repository.DemonRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.system.measureTimeMillis
 
 @Singleton
 class DemonRepositoryImpl @Inject constructor(
@@ -28,15 +30,19 @@ class DemonRepositoryImpl @Inject constructor(
         demonDao.upsertDemon(demon.asLocalModel())
     }
 
+    override suspend fun upsertAllNetwork(demons: List<NetworkDemon>) {
+        val demonsLocal = demons.map { it.asLocalModel() }
+        demonDao.upsertAll(demonsLocal)
+    }
+
+
     override suspend fun wipeData() {
          demonDao.wipeData()
     }
 
     /* Network Fragment */
     override suspend fun updateByNetwork() {
-        val result = api.getDemons().forEach {
-            demonDao.upsertDemon(it.asLocalModel())
-        }
+       upsertAllNetwork(api.getDemons())
     }
 
     override suspend fun fetchTodoCall(): List<Todo> {

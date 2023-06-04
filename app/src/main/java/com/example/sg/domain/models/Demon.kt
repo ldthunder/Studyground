@@ -1,4 +1,4 @@
-package com.example.sg.domain.model
+package com.example.sg.domain.models
 
 data class Demon(
     val id: Int,

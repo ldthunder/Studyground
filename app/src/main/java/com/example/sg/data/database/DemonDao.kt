@@ -12,6 +12,9 @@ interface DemonDao {
     @Upsert
     suspend fun upsertDemon(demonLocal: DemonLocal)
 
+    @Upsert
+    suspend fun upsertAll(demons: List<DemonLocal>)
+
     @Query("SELECT * FROM demon ORDER BY id ASC")
     fun getDemons(): Flow<List<DemonLocal>>
 

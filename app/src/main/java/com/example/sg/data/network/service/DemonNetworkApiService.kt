@@ -2,8 +2,8 @@ package com.example.sg.data.network.service
 
 import com.example.sg.data.network.BASE_URL
 import com.example.sg.data.network.DemonNetworkApi
-import com.example.sg.data.network.model.NetworkDemon
-import com.example.sg.data.network.model.NetworkTodo
+import com.example.sg.data.network.models.NetworkDemon
+import com.example.sg.data.network.models.NetworkTodo
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject

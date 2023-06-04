@@ -1,7 +1,7 @@
 package com.example.sg.data.network
 
-import com.example.sg.data.network.model.NetworkDemon
-import com.example.sg.data.network.model.NetworkTodo
+import com.example.sg.data.network.models.NetworkDemon
+import com.example.sg.data.network.models.NetworkTodo
 import retrofit2.Response
 import retrofit2.http.GET
 

@@ -1,7 +1,7 @@
 package com.example.sg.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.example.sg.domain.model.Todo
+import com.example.sg.domain.models.Todo
 import com.example.sg.domain.repository.DemonRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

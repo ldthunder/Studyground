@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.sg.databinding.FragmentRoomBinding
-import com.example.sg.domain.model.Demon
+import com.example.sg.domain.models.Demon
 import com.example.sg.presentation.viewmodels.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

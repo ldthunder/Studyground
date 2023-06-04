@@ -1,4 +1,4 @@
-package com.example.sg.domain.model
+package com.example.sg.domain.models
 
 data class Todo(
     val completed: Boolean,

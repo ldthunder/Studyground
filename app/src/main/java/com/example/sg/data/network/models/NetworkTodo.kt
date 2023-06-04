@@ -1,4 +1,4 @@
-package com.example.sg.data.network.model
+package com.example.sg.data.network.models
 
 data class NetworkTodo(
     val completed: Boolean,
