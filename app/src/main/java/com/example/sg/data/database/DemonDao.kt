@@ -10,11 +10,12 @@ import kotlinx.coroutines.flow.Flow
 interface DemonDao {
 
     @Upsert
-    suspend fun upsertDemon(demon: Demon)
-
-    @Delete
-    suspend fun deleteDemon(demon: Demon)
+    suspend fun upsertDemon(demonLocal: DemonLocal)
 
     @Query("SELECT * FROM demon ORDER BY id ASC")
-    fun getDemons(): Flow<List<Demon>>
+    fun getDemons(): Flow<List<DemonLocal>>
+
+    @Query("DELETE FROM demon")
+    suspend fun wipeData()
+
 }

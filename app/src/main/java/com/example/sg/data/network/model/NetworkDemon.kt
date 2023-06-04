@@ -1,6 +1,6 @@
-package com.example.sg.data.network
+package com.example.sg.data.network.model
 
-data class DemonNetwork(
+data class NetworkDemon(
     val albumId: Int,
     val id: Int,
     val thumbnailUrl: String,

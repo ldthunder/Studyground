@@ -1,24 +1,15 @@
 package com.example.sg.presentation.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
+import com.example.sg.domain.model.Todo
+import com.example.sg.domain.repository.DemonRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class NetworkViewModel : ViewModel() {
-    // LiveData
-    private val _word = MutableLiveData<String>()
-    val word: LiveData<String>
-        get() = _word
+@HiltViewModel
+class NetworkViewModel @Inject constructor(private val repository: DemonRepository) : ViewModel() {
 
-    init {
-        viewModelScope.launch {
-            // Coroutine that will be canceled when the ViewModel is cleared.
-        }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
+    suspend fun fetchTodo(): List<Todo> {
+        return repository.fetchTodoCall()
     }
 }

@@ -7,6 +7,19 @@
     android:layout_height="match_parent"
     tools:context=".presentation.fragments.RoomFragment">
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnWipe"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="220dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="64dp"
+        android:text="Wipe Data"
+        app:backgroundTint="#2A7FFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/tvRoom"
         android:layout_width="wrap_content"
@@ -21,53 +34,55 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/etInsert"
-        android:layout_width="164dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:id="@+id/etId"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginEnd="92dp"
         android:layout_marginBottom="16dp"
-        android:hint="Insert"
-        app:layout_constraintBottom_toTopOf="@+id/etReplace"
+        android:hint="ID"
+        app:layout_constraintBottom_toTopOf="@+id/etName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.572"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/etReplace"
-        android:layout_width="164dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:id="@+id/etName"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginEnd="92dp"
         android:layout_marginBottom="16dp"
-        android:hint="Replace"
-        app:layout_constraintBottom_toTopOf="@+id/etDelete"
+        android:hint="Name"
+        app:layout_constraintBottom_toTopOf="@+id/etPower"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.572"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/etDelete"
-        android:layout_width="164dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="24dp"
-        android:hint="Delete"
-        app:layout_constraintBottom_toTopOf="@+id/btnDoChanges"
+        android:id="@+id/etPower"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginEnd="92dp"
+        android:layout_marginBottom="32dp"
+        android:hint="Power"
+        app:layout_constraintBottom_toTopOf="@+id/btnInsert"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.572"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnDoChanges"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:id="@+id/btnInsert"
+        android:layout_width="128dp"
+        android:layout_height="48dp"
         android:layout_marginStart="64dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginEnd="220dp"
         android:layout_marginBottom="64dp"
-        android:text="Do Changes"
+        android:text="Insert"
         app:backgroundTint="#2A7FFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -78,7 +93,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/etInsert"
+        app:layout_constraintBottom_toTopOf="@+id/etId"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRoom" />

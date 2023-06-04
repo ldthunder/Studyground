@@ -6,11 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.example.sg.databinding.FragmentRoomBinding
 import com.example.sg.presentation.viewmodels.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RoomFragment : Fragment() {
@@ -26,18 +24,18 @@ class RoomFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentRoomBinding.inflate(inflater, container, false)
-
-        /* Temporary */
-        binding.btnDoChanges.setOnClickListener {
-            lifecycleScope.launch{
-                binding.tvDataBaseInfo.text = viewModel.logTheNetwork().toString()
-            }
-        }
-        /* Temporary */
-
         setupObservers()
+        setupOnClickListeners()
 
         return binding.root
+    }
+
+    private fun setupOnClickListeners() {
+        binding.btnInsert.setOnClickListener {  }
+
+        binding.btnWipe.setOnClickListener {
+            viewModel.wipeData()
+        }
     }
 
     private fun setupObservers() {

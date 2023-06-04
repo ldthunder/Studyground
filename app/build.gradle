@@ -17,6 +17,12 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas")
+            }
+        }
     }
 
     buildTypes {
@@ -51,8 +57,6 @@ kapt {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-
     /* Не меняй версию котлина, версии выше вызывают ошибку */
 
     debugImplementation("com.infinum.dbinspector:dbinspector:5.4.8")
