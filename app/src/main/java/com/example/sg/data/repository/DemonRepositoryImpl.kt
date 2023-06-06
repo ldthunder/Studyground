@@ -1,7 +1,7 @@
 package com.example.sg.data.repository
 
-import com.example.sg.data.database.DemonLocal
 import com.example.sg.data.database.DemonDao
+import com.example.sg.data.database.DemonLocal
 import com.example.sg.data.mapper.asExternalModel
 import com.example.sg.data.mapper.asLocalModel
 import com.example.sg.data.network.models.NetworkDemon
@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
-import kotlin.system.measureTimeMillis
 
 @Singleton
 class DemonRepositoryImpl @Inject constructor(
@@ -49,7 +48,7 @@ class DemonRepositoryImpl @Inject constructor(
         val response = try {
             api.getTodos()
         } catch (e: Exception){
-            println("YUER = Exception")
+            println("YUER = ${e.stackTraceToString()}")
             listOf()
         }
         return response.map(NetworkTodo::asExternalModel)

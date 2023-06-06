@@ -23,20 +23,30 @@ class RoomFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentRoomBinding.inflate(inflater, container, false)
+
         setupObservers()
-        setupOnClickListeners()
+        setupClickListeners()
 
         return binding.root
     }
 
-    private fun setupOnClickListeners() {
+    private fun setupClickListeners() {
         binding.btnInsert.setOnClickListener{
+            if (binding.etId.text.toString() == "") return@setOnClickListener
+
             val id = binding.etId.text.toString().toInt()
             val name = binding.etName.text.toString()
             val power = binding.etPower.text.toString()
+
             viewModel.upsert(Demon(id, name, power, ""))
+
+            with(binding){
+                etName.setText("")
+                etPower.setText("")
+            }
+
         }
 
         binding.btnWipe.setOnClickListener {

@@ -9,9 +9,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/elinaico_foreground"
+        android:icon="@mipmap/elinaicolast"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/elinaico_round"
+        android:roundIcon="@mipmap/elinaicolast_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SG"
         tools:targetApi="31">

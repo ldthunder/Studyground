@@ -3,12 +3,8 @@ package com.example.sg.data.database
 import android.content.Context
 import androidx.room.AutoMigration
 import androidx.room.Database
-import androidx.room.DeleteColumn
-import androidx.room.RenameColumn
-import androidx.room.RenameTable
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.migration.AutoMigrationSpec
 
 /*** В настоящем приложении параметр exportSchema надо поменять,
  *  и, поменяв, повысить версию дб,
