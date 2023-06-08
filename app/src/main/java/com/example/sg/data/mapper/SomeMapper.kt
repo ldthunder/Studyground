@@ -21,6 +21,13 @@ fun NetworkDemon.asLocalModel() = DemonLocal(
     url = this.url
 )
 
+fun NetworkDemon.asExternalModel() = Demon(
+    id = this.id,
+    name = this.title,
+    thumbnail = this.thumbnailUrl,
+    url = this.url
+)
+
 fun DemonLocal.asExternalModel() = Demon(
     id = this.id,
     name = this.name,

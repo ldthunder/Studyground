@@ -54,7 +54,7 @@ class RoomFragment : Fragment() {
         }
 
         binding.btnFetchDemons.setOnClickListener {
-            viewModel.fetchDemons()
+            viewModel.upsertAllFromNetwork()
         }
     }
 

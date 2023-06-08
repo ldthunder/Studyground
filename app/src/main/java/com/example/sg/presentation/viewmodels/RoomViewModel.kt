@@ -5,34 +5,38 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.sg.domain.models.Demon
-import com.example.sg.domain.repository.DemonRepository
+import com.example.sg.domain.use_case.database_use_cases.DatabaseUseCases
+import com.example.sg.domain.use_case.UpsertAllFromNetworkUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RoomViewModel @Inject constructor(private val repository: DemonRepository) : ViewModel() {
+class RoomViewModel @Inject constructor(
+    private val databaseUseCases: DatabaseUseCases,
+    private val upsertAllFromNetworkUseCase: UpsertAllFromNetworkUseCase
+) : ViewModel() {
 
     // All Data
-    val demonsList: LiveData<List<Demon>> = repository.allDemons.asLiveData()
+    val demonsList: LiveData<List<Demon>> = databaseUseCases.getAllDemonsUseCase().asLiveData()
 
 
     fun wipeData(){
         viewModelScope.launch {
-            repository.wipeData()
+            databaseUseCases.wipeDatabaseUseCase()
         }
     }
 
     fun upsert(demon: Demon){
         viewModelScope.launch {
-            repository.upsert(demon)
+            databaseUseCases.upsertToDatabaseUseCase(demon)
         }
     }
 
 
-    fun fetchDemons(){
+    fun upsertAllFromNetwork(){
         viewModelScope.launch {
-            repository.updateByNetwork()
+            upsertAllFromNetworkUseCase()
         }
     }
 

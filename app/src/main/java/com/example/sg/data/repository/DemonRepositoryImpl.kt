@@ -2,16 +2,13 @@ package com.example.sg.data.repository
 
 import com.example.sg.data.database.DemonDao
 import com.example.sg.data.database.DemonLocal
-import com.example.sg.data.mapper.asExternalModel
 import com.example.sg.data.mapper.asLocalModel
 import com.example.sg.data.network.models.NetworkDemon
 import com.example.sg.data.network.models.NetworkTodo
 import com.example.sg.data.network.service.DemonNetworkDataSource
 import com.example.sg.domain.models.Demon
-import com.example.sg.domain.models.Todo
 import com.example.sg.domain.repository.DemonRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -21,36 +18,39 @@ class DemonRepositoryImpl @Inject constructor(
     private val api: DemonNetworkDataSource
     ) : DemonRepository {
 
-    /* Room Fragment */
-    override val allDemons: Flow<List<Demon>>
-        get() = demonDao.getDemons().map { it.map(DemonLocal::asExternalModel) }
+    /* Database work */
+    override val allDemons: Flow<List<DemonLocal>>
+        get() = demonDao.getDemons()
 
-    override suspend fun upsert(demon: Demon) {
-        demonDao.upsertDemon(demon.asLocalModel())
+    override suspend fun upsert(demon: DemonLocal) {
+        demonDao.upsertDemon(demon)
     }
-
-    override suspend fun upsertAllNetwork(demons: List<NetworkDemon>) {
-        val demonsLocal = demons.map { it.asLocalModel() }
-        demonDao.upsertAll(demonsLocal)
-    }
-
 
     override suspend fun wipeData() {
          demonDao.wipeData()
     }
 
-    /* Network Fragment */
-    override suspend fun updateByNetwork() {
-       upsertAllNetwork(api.getDemons())
+    override suspend fun upsertAll(demonList: List<Demon>){
+        demonDao.upsertAll(demonList.map { it.asLocalModel()})
     }
 
-    override suspend fun fetchTodoCall(): List<Todo> {
-        val response = try {
+    /* Network work */
+    override suspend fun fetchTodoCall(): List<NetworkTodo> {
+        return try {
             api.getTodos()
         } catch (e: Exception){
             println("YUER = ${e.stackTraceToString()}")
             listOf()
         }
-        return response.map(NetworkTodo::asExternalModel)
     }
+
+    override suspend fun fetchDemonsCall(): List<NetworkDemon> {
+        return try {
+            api.getDemons()
+        } catch (e: Exception){
+            println("YUER = ${e.stackTraceToString()}")
+            listOf()
+        }
+    }
+
 }
