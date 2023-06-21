@@ -18,7 +18,4 @@ class CoroutinesViewModel : ViewModel() {
         }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-    }
 }

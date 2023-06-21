@@ -22,7 +22,4 @@ class MainViewModel : ViewModel() {
 
     }
 
-    override fun onCleared() {
-        super.onCleared()
-    }
 }

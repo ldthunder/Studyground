@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.sg.databinding.FragmentCoroutinesBinding
 import com.example.sg.presentation.viewmodels.CoroutinesViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CoroutinesFragment : Fragment() {
     private var _binding: FragmentCoroutinesBinding? = null
     private val binding get() = _binding!!
@@ -18,7 +20,7 @@ class CoroutinesFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCoroutinesBinding.inflate(inflater, container, false)
         return binding.root
     }

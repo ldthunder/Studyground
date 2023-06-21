@@ -40,7 +40,4 @@ class RoomViewModel @Inject constructor(
         }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-    }
 }

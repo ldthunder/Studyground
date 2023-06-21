@@ -7,7 +7,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class NetworkViewModel @Inject constructor(private val networkUseCases: NetworkUseCases) : ViewModel() {
+class NetworkViewModel @Inject constructor(
+    private val networkUseCases: NetworkUseCases
+    ) : ViewModel() {
 
     suspend fun fetchTodo(): List<Todo> {
         return networkUseCases.fetchTodoUseCase()

@@ -18,7 +18,4 @@ class FirebaseViewModel : ViewModel() {
         }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-    }
 }

@@ -22,7 +22,7 @@ class NetworkFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentNetworkBinding.inflate(inflater, container, false)
         setupClickListeners()
         return binding.root

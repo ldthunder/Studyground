@@ -1,14 +1,16 @@
 package com.example.sg.presentation.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.sg.databinding.FragmentFirebaseBinding
 import com.example.sg.presentation.viewmodels.FirebaseViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FirebaseFragment : Fragment() {
     private var _binding: FragmentFirebaseBinding? = null
     private val binding get() = _binding!!
@@ -18,7 +20,7 @@ class FirebaseFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentFirebaseBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -28,7 +30,5 @@ class FirebaseFragment : Fragment() {
         _binding = null
     }
 
-    companion object {
-        fun newInstance() = FirebaseFragment()
-    }
+
 }

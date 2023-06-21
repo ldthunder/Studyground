@@ -1,24 +1,46 @@
 package com.example.sg.presentation.viewmodels
 
+import android.app.Application
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
+import androidx.work.Constraints
+import androidx.work.ExistingWorkPolicy
+import androidx.work.NetworkType
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkInfo
+import androidx.work.WorkManager
+import com.example.sg.workers.UpdateByNetworkWorker
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class WorkersViewModel : ViewModel() {
-    // LiveData
-    private val _word = MutableLiveData<String>()
-    val word: LiveData<String>
-        get() = _word
+@HiltViewModel
+class WorkersViewModel @Inject constructor(
+    application: Application,
+    private val workManager: WorkManager
+): ViewModel() {
 
-    init {
-        viewModelScope.launch {
-            // Coroutine that will be canceled when the ViewModel is cleared.
-        }
+    internal val state: LiveData<List<WorkInfo>> = workManager.getWorkInfosForUniqueWorkLiveData(
+        UpdateByNetworkWorker.NAME
+    )
+
+    private val constraints = Constraints.Builder()
+        .setRequiredNetworkType(NetworkType.CONNECTED)
+        .build()
+
+    private val updateByNetworkRequest = OneTimeWorkRequestBuilder<UpdateByNetworkWorker>()
+        .setConstraints(constraints)
+        .build()
+
+    internal fun startWorker(){
+        workManager.enqueueUniqueWork(
+            UpdateByNetworkWorker.NAME,
+            ExistingWorkPolicy.KEEP,
+            updateByNetworkRequest
+        )
     }
 
-    override fun onCleared() {
-        super.onCleared()
+    internal fun cancelWorker(){
+        workManager.cancelUniqueWork(UpdateByNetworkWorker.NAME)
     }
+
 }

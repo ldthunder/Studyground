@@ -14,7 +14,4 @@ class ListViewModel @Inject constructor(databaseUseCases: DatabaseUseCases) : Vi
     // All Data
     val demonsList: LiveData<List<Demon>> = databaseUseCases.getAllDemonsUseCase().asLiveData()
 
-    override fun onCleared() {
-        super.onCleared()
-    }
 }

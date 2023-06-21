@@ -34,5 +34,4 @@ object DataModule{
     fun provideDemonApi(): DemonNetworkDataSource {
         return DemonNetworkApiService()
     }
-
 }
