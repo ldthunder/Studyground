@@ -6,15 +6,18 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.sg.domain.models.Demon
 import com.example.sg.domain.use_case.database_use_cases.DatabaseUseCases
-import com.example.sg.domain.use_case.UpsertAllFromNetworkUseCase
+import com.example.sg.domain.use_case.network_use_cases.NetworkUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
 class RoomViewModel @Inject constructor(
     private val databaseUseCases: DatabaseUseCases,
-    private val upsertAllFromNetworkUseCase: UpsertAllFromNetworkUseCase
+    private val networkUseCases: NetworkUseCases
 ) : ViewModel() {
 
     // All Data
@@ -29,15 +32,20 @@ class RoomViewModel @Inject constructor(
 
     fun upsert(demon: Demon){
         viewModelScope.launch {
-            databaseUseCases.upsertToDatabaseUseCase(demon)
+            databaseUseCases.upsertUseCase(demon)
         }
     }
-
 
     fun upsertAllFromNetwork(){
         viewModelScope.launch {
-            upsertAllFromNetworkUseCase()
+            withContext(Dispatchers.IO){
+                try {
+                    val response = networkUseCases.fetchDemonsUseCase()
+                    databaseUseCases.upsertAllUseCase(response)
+                } catch (e: IOException) {
+                    return@withContext
+                }
+            }
         }
     }
-
 }

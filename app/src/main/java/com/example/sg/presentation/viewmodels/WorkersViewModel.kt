@@ -42,5 +42,4 @@ class WorkersViewModel @Inject constructor(
     internal fun cancelWorker(){
         workManager.cancelUniqueWork(UpdateByNetworkWorker.NAME)
     }
-
 }

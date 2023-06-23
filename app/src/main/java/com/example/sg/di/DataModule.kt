@@ -4,8 +4,7 @@ import android.app.Application
 import androidx.work.WorkManager
 import com.example.sg.data.database.DemonDao
 import com.example.sg.data.database.DemonRoomDatabase
-import com.example.sg.data.network.service.DemonNetworkApiService
-import com.example.sg.data.network.service.DemonNetworkDataSource
+import com.example.sg.data.network.DemonNetworkApi
 import com.example.sg.data.repository.DemonRepositoryImpl
 import com.example.sg.domain.repository.DemonRepository
 import dagger.Module
@@ -26,14 +25,8 @@ object DataModule{
 
     @Provides
     @Singleton
-    fun provideDemonRepository(dao: DemonDao, api: DemonNetworkDataSource): DemonRepository{
+    fun provideDemonRepository(dao: DemonDao, api: DemonNetworkApi): DemonRepository {
         return DemonRepositoryImpl(dao, api)
-    }
-
-    @Provides
-    @Singleton
-    fun provideDemonApi(): DemonNetworkDataSource {
-        return DemonNetworkApiService()
     }
 
     @Provides

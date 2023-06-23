@@ -5,6 +5,6 @@ import javax.inject.Inject
 data class DatabaseUseCases @Inject constructor(
     val getAllDemonsUseCase: GetAllDemonsUseCase,
     val upsertAllUseCase: UpsertAllUseCase,
-    val upsertToDatabaseUseCase: UpsertToDatabaseUseCase,
+    val upsertUseCase: UpsertUseCase,
     val wipeDatabaseUseCase: WipeDatabaseUseCase
 )

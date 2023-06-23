@@ -28,13 +28,13 @@ class UpdateByNetworkWorker @AssistedInject constructor(
         setForeground(getForegroundInfo())
 
         val response: List<Demon> = try {
-            fetchDemonsUseCase.invoke()
+            fetchDemonsUseCase()
         } catch (e: IOException) {
             return Result.failure()
         }
 
         return try {
-            upsertAllUseCase.invoke(response)
+            upsertAllUseCase(response)
             Result.success()
         } catch (e: Exception) {
             Result.failure()
