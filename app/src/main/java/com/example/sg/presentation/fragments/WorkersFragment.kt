@@ -44,7 +44,6 @@ class WorkersFragment : Fragment() {
             binding.tvWorkerData.text = "Status: ${info.state}," +
                     " progress: ${info.progress}," +
                     " Attempt count: ${info.runAttemptCount}"
-
         }
     }
 
@@ -57,7 +56,6 @@ class WorkersFragment : Fragment() {
             viewModel.cancelWorker()
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

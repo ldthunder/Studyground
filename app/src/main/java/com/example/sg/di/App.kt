@@ -5,9 +5,10 @@ import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
-import androidx.hilt.work.HiltWorkerFactory
+import android.util.Log
 import androidx.work.Configuration
 import com.example.sg.R
+import com.example.sg.workers.CustomWorkerFactory
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
@@ -15,10 +16,13 @@ import javax.inject.Inject
 class App : Application(), Configuration.Provider {
 
     @Inject
-    lateinit var workerFactory: HiltWorkerFactory
+    lateinit var workerFactory: CustomWorkerFactory
 
     override fun getWorkManagerConfiguration(): Configuration {
-        return Configuration.Builder().setWorkerFactory(workerFactory).build()
+        return Configuration.Builder()
+            .setMinimumLoggingLevel(Log.DEBUG)
+            .setWorkerFactory(workerFactory)
+            .build()
     }
 
     @SuppressLint("ObsoleteSdkInt")

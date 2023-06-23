@@ -18,8 +18,4 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    fun navigateById(){
-
-    }
-
 }

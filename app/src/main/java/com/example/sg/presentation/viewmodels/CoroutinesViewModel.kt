@@ -8,9 +8,6 @@ import kotlinx.coroutines.launch
 
 class CoroutinesViewModel : ViewModel() {
     // LiveData
-    private val _word = MutableLiveData<String>()
-    val word: LiveData<String>
-        get() = _word
 
     init {
         viewModelScope.launch {

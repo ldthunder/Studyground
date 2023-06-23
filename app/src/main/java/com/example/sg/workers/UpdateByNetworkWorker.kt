@@ -9,21 +9,36 @@ import androidx.work.ForegroundInfo
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import com.example.sg.R
-import com.example.sg.domain.repository.DemonRepository
+import com.example.sg.domain.models.Demon
+import com.example.sg.domain.use_case.database_use_cases.UpsertAllUseCase
+import com.example.sg.domain.use_case.network_use_cases.FetchDemonsUseCase
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import kotlinx.coroutines.delay
+import java.io.IOException
 
 @HiltWorker
 class UpdateByNetworkWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParams: WorkerParameters,
-): CoroutineWorker(appContext, workerParams){
+    private val fetchDemonsUseCase: FetchDemonsUseCase,
+    private val upsertAllUseCase: UpsertAllUseCase
+) : CoroutineWorker(appContext, workerParams) {
 
     override suspend fun doWork(): Result {
         setForeground(getForegroundInfo())
-        delay(2000)
-        return Result.success()
+
+        val response: List<Demon> = try {
+            fetchDemonsUseCase.invoke()
+        } catch (e: IOException) {
+            return Result.failure()
+        }
+
+        return try {
+            upsertAllUseCase.invoke(response)
+            Result.success()
+        } catch (e: Exception) {
+            Result.failure()
+        }
     }
 
     override suspend fun getForegroundInfo(): ForegroundInfo {
@@ -33,15 +48,13 @@ class UpdateByNetworkWorker @AssistedInject constructor(
     }
 
     private fun createNotification(): Notification {
-        // This PendingIntent can be used to cancel the worker
+        // PendingIntent нужен для отмены извне
         val intent = WorkManager.getInstance(applicationContext)
             .createCancelPendingIntent(id)
 
         val id = applicationContext.getString(R.string.notification_channel_id)
         val title = applicationContext.getString(R.string.notification_title)
         val cancel = applicationContext.getString(R.string.cancel_download)
-        // Create a Notification channel if necessary
-
 
         return NotificationCompat.Builder(applicationContext, id)
             .setContentTitle(title)

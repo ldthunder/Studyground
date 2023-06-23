@@ -1,12 +1,12 @@
 package com.example.sg.presentation.viewmodels
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.work.Constraints
 import androidx.work.ExistingWorkPolicy
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.OutOfQuotaPolicy
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import com.example.sg.workers.UpdateByNetworkWorker
@@ -15,7 +15,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WorkersViewModel @Inject constructor(
-    application: Application,
     private val workManager: WorkManager
 ): ViewModel() {
 
@@ -29,6 +28,7 @@ class WorkersViewModel @Inject constructor(
 
     private val updateByNetworkRequest = OneTimeWorkRequestBuilder<UpdateByNetworkWorker>()
         .setConstraints(constraints)
+        .setExpedited(OutOfQuotaPolicy.DROP_WORK_REQUEST)
         .build()
 
     internal fun startWorker(){

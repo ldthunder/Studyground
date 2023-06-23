@@ -1,6 +1,7 @@
 package com.example.sg.di
 
 import android.app.Application
+import androidx.work.WorkManager
 import com.example.sg.data.database.DemonDao
 import com.example.sg.data.database.DemonRoomDatabase
 import com.example.sg.data.network.service.DemonNetworkApiService
@@ -34,4 +35,11 @@ object DataModule{
     fun provideDemonApi(): DemonNetworkDataSource {
         return DemonNetworkApiService()
     }
+
+    @Provides
+    @Singleton
+    fun provideWorkManager(app: Application): WorkManager {
+        return WorkManager.getInstance(app)
+    }
+
 }

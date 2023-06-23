@@ -8,12 +8,7 @@ class UpsertAllFromNetworkUseCase @Inject constructor(
     private val repository: DemonRepository
     ) {
     suspend operator fun invoke(){
-        val response = try {
-            repository.fetchDemonsCall()
-        } catch (e: Exception){
-            println("YUER = ${e.stackTraceToString()}")
-            return
-        }
+        val response = repository.fetchDemonsCall()
         repository.upsertAll(response.map { it.asExternalModel() })
     }
 }
