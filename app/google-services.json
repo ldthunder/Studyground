@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1072230130846",
+    "project_id": "studyground-5f3da",
+    "storage_bucket": "studyground-5f3da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072230130846:android:553c504148e17601c0078f",
+        "android_client_info": {
+          "package_name": "com.example.sg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1072230130846-luabdtdj64halo38tn8qn779mr0p3njn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sg",
+            "certificate_hash": "221ff0b0ea584f973af40e39e253c02478be6500"
+          }
+        },
+        {
+          "client_id": "1072230130846-94eg72os02fo7afn7ibs5ea73ioj97ah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGCTSkpF3cbSahO5sDjTbLnSxnnWNjX7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1072230130846-15rv1oepv7jjqlbfoglie3n0868hmr6n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -21,8 +21,8 @@ class DemonListAdapter(val context: Context) : ListAdapter<Demon, DemonViewHolde
     }
 
     override fun onBindViewHolder(holder: DemonViewHolder, position: Int) {
-        with(holder.binding){
-            with(getItem(position)){
+        with(holder.binding) {
+            with(getItem(position)) {
                 tvDemonName.text = name
                 tvDemonPower.text = thumbnail
                 tvIdNumber.text = id.toString()

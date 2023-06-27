@@ -3,4 +3,5 @@
     <string name="notification_channel_id">1</string>
     <string name="notification_title">Worker Работает</string>
     <string name="cancel_download">Отмена</string>
+    <string name="web_client_id">1072230130846-94eg72os02fo7afn7ibs5ea73ioj97ah.apps.googleusercontent.com</string>
 </resources>

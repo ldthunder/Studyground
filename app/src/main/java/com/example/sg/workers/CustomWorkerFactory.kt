@@ -8,8 +8,9 @@ import com.example.sg.domain.use_case.database_use_cases.UpsertAllUseCase
 import com.example.sg.domain.use_case.network_use_cases.FetchDemonsUseCase
 import javax.inject.Inject
 
-class CustomWorkerFactory @Inject constructor(private val fetchDemonsUseCase: FetchDemonsUseCase,
-                                              private val upsertAllUseCase: UpsertAllUseCase
+class CustomWorkerFactory @Inject constructor(
+    private val fetchDemonsUseCase: FetchDemonsUseCase,
+    private val upsertAllUseCase: UpsertAllUseCase
 ): WorkerFactory() {
     override fun createWorker(
         appContext: Context,
