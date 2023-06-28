@@ -58,6 +58,10 @@ class FirebaseFragment @Inject constructor() : Fragment() {
                 .load(currentUser.profilePictureUrl)
                 .placeholder(R.drawable.elinaicolast_background)
                 .into(binding.imgFirebase)
+            lifecycleScope.launch {
+                val radja = viewModel.getFirebaseUserByUid(currentUser)!!.data?.get("name")
+                println("Yuer $radja")
+            }
         } else {
             binding.tvFirebaseData.text = ""
             binding.imgFirebase.setImageResource(R.drawable.elinaicolast_background)
@@ -72,8 +76,11 @@ class FirebaseFragment @Inject constructor() : Fragment() {
                     val signInResult = googleAuthClient.signInWithIntent(
                         intent = result.data ?: return@launch
                     )
-                    updateUi()
                     viewModel.onSignInResult(signInResult)
+                    if (signInResult.data != null){
+                        viewModel.addUserToFirestore(signInResult.data)
+                    }
+                    updateUi()
                 }
             }
         }

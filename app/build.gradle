@@ -58,6 +58,8 @@ kapt {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.6.1'
+
 
     /* Не меняй версию котлина, версии выше вызывают ошибку */
     debugImplementation("com.infinum.dbinspector:dbinspector:5.4.8")

@@ -5,6 +5,7 @@ import com.example.sg.data.network.models.NetworkDemon
 import com.example.sg.data.network.models.NetworkTodo
 import com.example.sg.domain.models.Demon
 import com.example.sg.domain.models.Todo
+import com.example.sg.presentation.google_auth.UserData
 
 /* Object to Object */
 fun NetworkTodo.asExternalModel() = Todo(
@@ -41,3 +42,9 @@ fun Demon.asLocalModel() = DemonLocal(
     thumbnail = this.thumbnail,
     url = this.url
 )
+
+fun UserData.asFirestoreModel() =
+    hashMapOf(
+        "name" to this.username,
+        "photoUrl" to this.profilePictureUrl
+    )
