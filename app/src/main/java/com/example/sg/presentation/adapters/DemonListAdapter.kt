@@ -9,7 +9,9 @@ import com.example.sg.R
 import com.example.sg.databinding.DemonListItemBinding
 import com.example.sg.domain.models.Demon
 
-class DemonListAdapter(val context: Context) : ListAdapter<Demon, DemonViewHolder>(DiffCallback) {
+class DemonListAdapter(val context: Context) : ListAdapter<Demon, DemonViewHolder>(
+    DiffCallback
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DemonViewHolder {
         val binding = DemonListItemBinding.inflate(

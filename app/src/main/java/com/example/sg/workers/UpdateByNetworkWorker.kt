@@ -14,6 +14,7 @@ import com.example.sg.domain.use_case.database_use_cases.UpsertAllUseCase
 import com.example.sg.domain.use_case.network_use_cases.FetchDemonsUseCase
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.delay
 import java.io.IOException
 
 @HiltWorker
@@ -35,6 +36,7 @@ class UpdateByNetworkWorker @AssistedInject constructor(
 
         return try {
             upsertAllUseCase(response)
+            delay(2000)
             Result.success()
         } catch (e: Exception) {
             Result.failure()

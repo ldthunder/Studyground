@@ -10,10 +10,8 @@ import com.example.sg.data.network.models.NetworkTodo
 import com.example.sg.domain.models.Demon
 import com.example.sg.domain.models.Todo
 import com.example.sg.domain.repository.DemonRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -43,23 +41,10 @@ class DemonRepositoryImpl @Inject constructor(
 
     /* Network work */
     override suspend fun fetchDemonsCall(): List<Demon> {
-        return try {
-            withContext(Dispatchers.IO) {
-                api.getDemons().body()!!.map(NetworkDemon::asExternalModel)
-            }
-        } catch (e: Exception) {
-            listOf()
-        }
+        return api.getDemons().body()!!.map(NetworkDemon::asExternalModel)
     }
 
     override suspend fun fetchTodoCall(): List<Todo> {
-        return try {
-            withContext(Dispatchers.IO) {
-                api.getTodos().body()!!.map(NetworkTodo::asExternalModel)
-            }
-        } catch (e: Exception) {
-            listOf()
-        }
+        return api.getTodos().body()!!.map(NetworkTodo::asExternalModel)
     }
-
 }

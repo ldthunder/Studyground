@@ -33,7 +33,8 @@ class ListFragment : Fragment() {
     }
 
     private fun setupRecView() {
-        val listAdapter = DemonListAdapter(requireContext())
+        val listAdapter =
+            DemonListAdapter(requireContext())
         binding.demonRecView.adapter = listAdapter
         viewModel.demonsList.observe(viewLifecycleOwner) {
             listAdapter.submitList(it)

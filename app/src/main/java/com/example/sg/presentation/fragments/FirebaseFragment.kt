@@ -26,7 +26,6 @@ import javax.inject.Inject
 class FirebaseFragment @Inject constructor() : Fragment() {
     @Inject
     lateinit var googleAuthClient: GoogleAuthClient
-
     private var _binding: FragmentFirebaseBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModels<FirebaseViewModel>()
@@ -43,8 +42,8 @@ class FirebaseFragment @Inject constructor() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         updateUi()
-        val launcher = activityResultLauncher()
-        setUpClickListeners(launcher)
+        val launcher = createForActivityResultLauncher()
+        setUpSignInClickListeners(launcher)
         setUpObservers()
     }
 
@@ -68,7 +67,7 @@ class FirebaseFragment @Inject constructor() : Fragment() {
         }
     }
 
-    private fun activityResultLauncher(): ActivityResultLauncher<IntentSenderRequest> {
+    private fun createForActivityResultLauncher(): ActivityResultLauncher<IntentSenderRequest> {
         val contract = ActivityResultContracts.StartIntentSenderForResult()
         val launcher = registerForActivityResult(contract) { result ->
             if (result.resultCode == RESULT_OK) {
@@ -87,7 +86,7 @@ class FirebaseFragment @Inject constructor() : Fragment() {
         return launcher
     }
 
-    private fun setUpClickListeners(launcher: ActivityResultLauncher<IntentSenderRequest>) {
+    private fun setUpSignInClickListeners(launcher: ActivityResultLauncher<IntentSenderRequest>) {
         binding.googleSign.setOnClickListener {
             lifecycleScope.launch {
                 val signInIntentSender = googleAuthClient.signIn()
@@ -109,8 +108,7 @@ class FirebaseFragment @Inject constructor() : Fragment() {
 
     private fun setUpObservers() {
         viewModel.state.observe(viewLifecycleOwner) {
-            println("YUER, " + it.isSignInSuccessful.toString())
-            println("YUER, ${it.signInError}")
+            println("YUER, ${it.isSignInSuccessful} ${it.signInError}")
         }
     }
 

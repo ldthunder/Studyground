@@ -68,7 +68,6 @@ class GoogleAuthClient(
     }
 
     fun getSignedInUser(): UserData? = auth.currentUser?.run {
-        println("YUER" + email + phoneNumber)
         UserData(
             userId = uid,
             username = displayName,
