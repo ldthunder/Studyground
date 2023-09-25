@@ -42,20 +42,20 @@ class DatabaseUseCasesTest {
     }
 
     @Test
-    fun getAllDemonsUseCase() = runBlocking {
+    fun `Getting all the demons UseCase test`() = runBlocking {
         val demons = getAllDemons.invoke().first()
         assertThat(demons).contains(Demon(2, "2", "2", "2"))
     }
 
     @Test
-    fun getUpsertAllUseCase() = runBlocking {
+    fun `Upserting all into the database UseCase test`() = runBlocking {
         val list = listOf(Demon(15,"15", "15", "15"))
         upsertAllUseCase.invoke(list)
         assertThat(fakeRepository.allDemons.first()).contains(Demon(15,"15", "15", "15"))
     }
 
     @Test
-    fun getUpsertUseCase() = runBlocking {
+    fun `Upserting a demon UseCase test`() = runBlocking {
         val demon = Demon(16,"15", "15", "15")
         upsertUseCase.invoke(demon)
         assertThat(fakeRepository.allDemons.first()).contains(Demon(16,"15", "15", "15"))
@@ -63,7 +63,7 @@ class DatabaseUseCasesTest {
     }
 
     @Test
-    fun getWipeDatabaseUseCase() = runBlocking {
+    fun `Wipe all the database UseCase test`() = runBlocking {
         wipeDatabaseUseCase.invoke()
         assertThat(fakeRepository.allDemons.first()).isEmpty()
     }
