@@ -37,7 +37,6 @@ class CoroutinesFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
-
         binding.btnStartCoroutine.setOnClickListener {
             val coroutine: Job = lifecycleScope.launch {
                 viewModel.startCoroutine()
@@ -46,7 +45,6 @@ class CoroutinesFragment : Fragment() {
                 coroutine.cancel()
             }
         }
-
     }
     override fun onDestroyView() {
         super.onDestroyView()
